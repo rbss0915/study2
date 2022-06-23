@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Member {
 	private String memberId;
+	private String memberPw;
 	private String memberName;
 	private String memberDepartment;
 	private int memberPhone;
@@ -17,6 +18,12 @@ public class Member {
 	}
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
+	}
+	public String getMemberPw() {
+		return memberPw;
+	}
+	public void setMemberPw(String memberPw) {
+		this.memberPw = memberPw;
 	}
 	public String getMemberName() {
 		return memberName;
@@ -55,6 +62,18 @@ public class Member {
 		this.memberNumber = memberNumber;
 	}
 	
+	@Override
+	public String toString() {
+		return "ID: " + memberId
+					+ "회원번호: " + memberNumber
+					+ "이름: " + memberName
+					+ "부서: " + memberDepartment
+					+ "성명:"  + memberName
+					+ "부서명: " + memberDepartment 
+					+ "전화: " + memberPhone
+					+ "이메일: " + memberEmail
+					+ "가입일: " + memberDate;
+	}
 	
 
 }
