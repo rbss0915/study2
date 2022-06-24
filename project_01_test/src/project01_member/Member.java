@@ -65,13 +65,13 @@ public class Member {
 	@Override
 	public String toString() {
 		return "ID: " + memberId
-					+ "회원번호: " + memberNumber
-					+ "이름: " + memberName
-					+ "부서: " + memberDepartment
-					+ "부서명: " + memberDepartment 
-					+ "전화: " + memberPhone
-					+ "이메일: " + memberEmail
-					+ "가입일: " + memberDate;
+					+ " 사원번호: " + memberNumber
+					+ " 이름: " + memberName
+					+ " 부서: " + memberDepartment
+					+ " 부서명: " + memberDepartment 
+					+ " 전화: " + memberPhone
+					+ " 이메일: " + memberEmail
+					+ " 가입일: " + memberDate;
 	}
 	
 

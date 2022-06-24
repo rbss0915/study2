@@ -107,31 +107,6 @@ public class MemberDAO extends DAO{
 		}
 	}
 	
-	//단건조회 - 이름
-	public Member selectOne(String memberName) {
-		Member member = null;
-		try {
-			connect();
-			String sql = "SELECT * FROM member WHERE name = ? ";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,  memberName);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				member = new Member();
-				member.setMemberId(rs.getString("Id"));
-				member.setMemberName(rs.getString("name"));
-				member.setMemberDepartment(rs.getString("department"));
-				member.setMemberPhone(rs.getString("phone"));
-				member.setMemberEmail(rs.getString("email"));
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			disconnect();
-		}
-		return member;
-	}
-	
 	public Member selectCheck(String memberId, String memberPw) {
 		Member member = null;
 		try {
@@ -159,16 +134,21 @@ public class MemberDAO extends DAO{
 		List<Member> list = new ArrayList<>();
 		try {
 			connect();
-			String sql = "SELECT * FROM member GROUP BY department";
+			String sql = "SELECT * FROM member ORDER BY department";
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 				Member member = new Member();
-				member.setMemberId(rs.getString("Id"));
+				member.setMemberId(rs.getString("id"));
 				member.setMemberName(rs.getString("name"));
 				member.setMemberDepartment(rs.getString("department"));
 				member.setMemberPhone(rs.getString("phone"));
 				member.setMemberEmail(rs.getString("email"));
+				member.setMemberNumber(rs.getInt("member_num"));
+				member.setMemberDate(rs.getDate("member_date"));
+				
+				list.add(member);
+
 			}
 					
 		}catch(SQLException e) {
@@ -178,22 +158,55 @@ public class MemberDAO extends DAO{
 		}
 		return list;
 	}
-	//검색
-	public List<Member> getList(String memberName){
+	//검색-사원명
+	public List<Member> searchMember(String memberName){
 		List<Member> list = new ArrayList<>();
 		try {
 			connect();
 			String sql = "SELECT * FROM member WHERE name = ?";
-			pstmt = conn.prepareStatement(sql);			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberName);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				Member member = new Member();
-				member.setMemberId(rs.getString("Id"));
+				
+				member.setMemberId(rs.getString("id"));
 				member.setMemberName(rs.getString("name"));
 				member.setMemberDepartment(rs.getString("department"));
 				member.setMemberPhone(rs.getString("phone"));
 				member.setMemberEmail(rs.getString("email"));
+				member.setMemberNumber(rs.getInt("member_num"));
+				member.setMemberDate(rs.getDate("member_date"));
+				
+				list.add(member);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return list;
+	}
+	//검색-부서별
+	public List<Member> searchDeparement(String memberGroup){
+		List<Member> list = new ArrayList<>();
+		try {
+			connect();
+			String sql = "SELECT * FROM member WHERE department = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberGroup);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Member member = new Member();
+				member.setMemberId(rs.getString("id"));
+				member.setMemberName(rs.getString("name"));
+				member.setMemberDepartment(rs.getString("department"));
+				member.setMemberPhone(rs.getString("phone"));
+				member.setMemberEmail(rs.getString("email"));
+				member.setMemberNumber(rs.getInt("member_num"));
+				member.setMemberDate(rs.getDate("member_date"));
 				
 				list.add(member);
 			}
@@ -243,3 +256,29 @@ public class MemberDAO extends DAO{
 
 }
 
+
+
+/*//단건조회 - 이름
+	public Member selectOne(String memberName) {
+		Member member = null;
+		try {
+			connect();
+			String sql = "SELECT * FROM member WHERE name = ? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,  memberName);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				member = new Member();
+				member.setMemberId(rs.getString("Id"));
+				member.setMemberName(rs.getString("name"));
+				member.setMemberDepartment(rs.getString("department"));
+				member.setMemberPhone(rs.getString("phone"));
+				member.setMemberEmail(rs.getString("email"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			disconnect();
+		}
+		return member;
+	}*/

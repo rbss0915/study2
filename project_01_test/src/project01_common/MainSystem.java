@@ -1,12 +1,12 @@
 package project01_common;
 
 
+
 import java.util.Scanner;
 
 import project01_board01.Board01DAO;
 import project01_member.Member;
 import project01_member.MemberDAO;
-import project01_member.MemberSystem;
 
 public class MainSystem {
 	
@@ -19,8 +19,8 @@ public class MainSystem {
 	}
 
 	public MainSystem() {
-		menuPrint();
 		while(true) {
+			menuPrint();
 			int menuNo = menuSelect();
 			
 			if(menuNo == 1) {
@@ -28,11 +28,13 @@ public class MainSystem {
 				login();
 			}else if(menuNo == 2) {
 				//회원가입
-				new MemberSystem();
-				
+				menuPrintIn();
+				insertMemberInfo();
+				continue;
 			}else if(menuNo == 9){
 				//종료
-				exit();
+				exitProgram();
+				break;
 			}else {
 				//입력오류
 				showInputError();
@@ -41,13 +43,13 @@ public class MainSystem {
 	}
 	
 	//메소드
-	protected void menuPrint() {
+	private void menuPrint() {
 		System.out.println("============================");
 		System.out.println("1.로그인 2.회원가입 9.종료");
 		System.out.println("============================");
 	}
 	
-	protected int menuSelect() {
+	private int menuSelect() {
 		int menuNo = 0;
 		try {
 			menuNo = Integer.parseInt(sc.nextLine());
@@ -57,7 +59,7 @@ public class MainSystem {
 		return menuNo;
 	}
 	
-	protected void exit() {
+	protected void exitProgram() {
 		System.out.println("exit");
 	}
 	
@@ -74,7 +76,7 @@ public class MainSystem {
 		if(loginInfo == null) return;
 		
 		//성공할 경우 프로그램을 실행
-		new InfoSystem();
+		new TitleSystem();
 	}
 	
 	protected Member inputMember() {
@@ -84,6 +86,39 @@ public class MainSystem {
 		System.out.println("비밀번호>");
 		info.setMemberPw(sc.nextLine());
 		return info;
+	}
+	
+	
+	
+	protected void menuPrintIn() {
+		System.out.println("==============");
+		System.out.println("회원 가입");
+		System.out.println("==============");
+	}
+	
+	private void insertMemberInfo() {
+		//가입정보 입력
+		Member member = inputAll();
+		//DB에 저장
+		mDAO.insertMember(member);
+	}
+	
+	private Member inputAll() {
+		Member member = new Member();
+		System.out.println("ID>");
+		member.setMemberId(sc.nextLine());
+		System.out.println("PASSWORD>");
+		member.setMemberPw(sc.nextLine());
+		System.out.println("성명>");
+		member.setMemberName(sc.nextLine());
+		System.out.println("부서명>");
+		member.setMemberDepartment(sc.nextLine());
+		System.out.println("전화>");
+		member.setMemberPhone(sc.nextLine());
+		System.out.println("e-mail>");
+		member.setMemberEmail(sc.nextLine());
+		
+		return member;
 	}
 	
 

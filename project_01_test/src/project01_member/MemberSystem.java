@@ -1,12 +1,12 @@
 package project01_member;
 
 import project01_common.MainSystem;
-
+/*
 public class MemberSystem extends MainSystem{
 	public MemberDAO mDAO = MemberDAO.getInstance();
 	public MemberSystem() {
-		menuPrint();
 		while(true) {
+			menuPrint();
 			int menuNo = menuSelect();
 			if(menuNo == 1) {
 				//회원가입 등록
@@ -14,12 +14,11 @@ public class MemberSystem extends MainSystem{
 			}else if(menuNo == 9) {
 				//뒤로가기
 				back();
-				return;
+				break;
 			}else {
 				//입력오류
 				showInputError();
 			}
-			
 		}
 	}
 	protected void menuPrint() {
