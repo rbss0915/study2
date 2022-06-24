@@ -7,7 +7,7 @@ public class Member {
 	private String memberPw;
 	private String memberName;
 	private String memberDepartment;
-	private int memberPhone;
+	private String memberPhone;
 	private String memberEmail;
 	private Date memberDate;
 	private int memberNumber;
@@ -37,10 +37,10 @@ public class Member {
 	public void setMemberDepartment(String memberDepartment) {
 		this.memberDepartment = memberDepartment;
 	}
-	public int getMemberPhone() {
+	public String getMemberPhone() {
 		return memberPhone;
 	}
-	public void setMemberPhone(int memberPhone) {
+	public void setMemberPhone(String memberPhone) {
 		this.memberPhone = memberPhone;
 	}
 	public String getMemberEmail() {
@@ -68,7 +68,6 @@ public class Member {
 					+ "회원번호: " + memberNumber
 					+ "이름: " + memberName
 					+ "부서: " + memberDepartment
-					+ "성명:"  + memberName
 					+ "부서명: " + memberDepartment 
 					+ "전화: " + memberPhone
 					+ "이메일: " + memberEmail

@@ -5,35 +5,31 @@ import project01_common.MainSystem;
 public class MemberSystem extends MainSystem{
 	public MemberDAO mDAO = MemberDAO.getInstance();
 	public MemberSystem() {
+		menuPrint();
 		while(true) {
-			menuPrint();
-			
 			int menuNo = menuSelect();
-			
 			if(menuNo == 1) {
 				//회원가입 등록
 				insertMemberInfo();
 			}else if(menuNo == 9) {
 				//뒤로가기
 				back();
-				break;
+				return;
 			}else {
 				//입력오류
 				showInputError();
-				
 			}
 			
 		}
 	}
-	@Override
 	protected void menuPrint() {
 		System.out.println("==============");
-		System.out.println("회원 가입");
+		System.out.println("1.회원 가입 9.뒤로가기");
 		System.out.println("==============");
 	}
 	
 	private void back() {
-		System.out.println("메인으로 돌아갑니다.");
+		System.out.println("메인으로 돌아갑니다.2");
 	}
 	
 	private void insertMemberInfo() {
@@ -53,6 +49,8 @@ public class MemberSystem extends MainSystem{
 		member.setMemberName(sc.nextLine());
 		System.out.println("부서명>");
 		member.setMemberDepartment(sc.nextLine());
+		System.out.println("전화>");
+		member.setMemberPhone(sc.nextLine());
 		System.out.println("e-mail>");
 		member.setMemberEmail(sc.nextLine());
 		
