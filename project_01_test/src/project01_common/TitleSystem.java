@@ -14,6 +14,7 @@ public class TitleSystem {
 				new InfoSystem();
 			}else if(menuNo == 2) {
 				//공지사항
+				new Board01System();
 				
 			}else if(menuNo == 3) {
 				

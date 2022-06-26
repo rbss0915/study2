@@ -11,7 +11,15 @@ public class Board01 {
 	private Date board01WriterDate;
 	private int board01ViewCount;
 	private	int board01ReCount;
+	private	String board01Pw;
 
+
+	public String getBoard01Pw() {
+		return board01Pw;
+	}
+	public void setBoard01Pw(String board01Pw) {
+		this.board01Pw = board01Pw;
+	}
 	public String getMemberName() {
 		return memberName;
 	}
