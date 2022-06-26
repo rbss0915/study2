@@ -12,7 +12,7 @@ public class Board01 {
 	private int board01ViewCount;
 	private	int board01ReCount;
 	private	String board01Pw;
-
+	
 
 	public String getBoard01Pw() {
 		return board01Pw;

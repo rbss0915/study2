@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import project01_board01.Board01;
 import project01_board01.Board01DAO;
+import project01_board01.Board01Re;
 import project01_member.Member;
 import project01_member.MemberDAO;
 
@@ -37,6 +38,8 @@ public class Board01System {
 	
 	private void inBoard() {
 		selectBoard();
+		System.out.println("------------------");
+		
 		inBoardMenu();
 		int menuNo = menuSelect();
 		  while(true) {
@@ -48,6 +51,14 @@ public class Board01System {
 					//글삭제
 				  	deleteBoardTrue();
 				  	break;
+			  }else if(menuNo == 3) {
+					//댓글달기
+				  insertReInfo();
+				  	break;
+			  }else if(menuNo == 4) {
+					//댓글삭제
+				  deleteReInfo();
+				  	break;
 			  }else if(menuNo == 9){
 				  	//뒤로
 				  	back();
@@ -57,7 +68,70 @@ public class Board01System {
 			  }
 		  }
 	}
+	
+	/*private void inBoardRe() {
+		System.out.println("@@@@@@@");
+		inBoardReMenu();
+		int menuNo = menuSelect();
+			while(true){
+				if(menuNo == 1) {
+					//댓수정
+					
+					break;
+				}else if(menuNo == 2) {
+					//댓삭제
+					
+					break;
+				}else if(menuNo == 9) {
+					//뒤로
+					back();
+					break;
+				}else {
+					showInputError();
+				}
+			}
+	}*/
 	////////////////////////////////////////////////////
+	private void deleteReInfo() {
+		Board01Re board01re = deleteRe();
+		b1DAO.deleteRe(board01re);
+	}
+	
+	private Board01Re deleteRe() {
+		Board01Re board01re = new Board01Re();
+		System.out.println("댓비번확인>");
+		board01re.setPwRe(sc.nextLine());
+		
+		return board01re;
+	}
+	
+	
+	private void insertReInfo() {
+		Board01Re board01re = inputRe();
+		b1DAO.insertRe(board01re);
+	}
+	
+	private Board01Re inputRe() {
+		Board01Re board01re = new Board01Re();
+		System.out.println("현재글번호>");
+		board01re.setBoard01Number(Integer.parseInt(sc.nextLine()));
+		System.out.println("내용>");
+		board01re.setRecontent(sc.nextLine());
+		System.out.println("성명>");
+		board01re.setMemberName(sc.nextLine());
+		System.out.println("댓비번>");
+		board01re.setPwRe(sc.nextLine());
+		
+		return board01re;
+	}
+	
+	private void ViewRe() {
+		List<Board01Re> list = b1DAO.viewRe();
+		for(Board01Re view : list) {
+			System.out.println(view);
+		}
+	}
+
 	private void deleteBoardTrue(){
 		Member insertId = inputMember();
 		Member inputId = MemberDAO.getInstance().selectCheck(insertId.getMemberId(), insertId.getMemberPw());
@@ -123,9 +197,7 @@ public class Board01System {
 	}
 	
 	private void insertBoardInfo() {
-		//가입정보 입력
 		Board01 board = inputAll();
-		//DB에 저장
 		b1DAO.insert(board);
 	}
 	
@@ -173,6 +245,8 @@ public class Board01System {
 		List<Board01> list = b1DAO.viewOne(select);
 		for(Board01 view : list) {
 			System.out.println(view);
+			//댓글보기
+			ViewRe();
 		}
 	}
 	/*private void insertBoardNum() {
@@ -201,7 +275,11 @@ public class Board01System {
 	}
 	
 	private void inBoardMenu(){
-		System.out.println("1.수정 2.삭제 9.뒤로");
+		System.out.println("1.수정 2.삭제 3.댓글 4.댓글삭 9.뒤로");
+		
+	}
+	private void inBoardReMenu(){
+		System.out.println("1.댓수정 2.댓삭제 9.뒤로");
 		
 	}
 

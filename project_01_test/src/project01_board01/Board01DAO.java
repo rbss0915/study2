@@ -17,6 +17,7 @@ public class Board01DAO extends DAO{
 		}
 		return board01DAO;
 	}
+	
 	//등록
 	public void insert(Board01 board01) {
 		try {
@@ -138,7 +139,9 @@ public class Board01DAO extends DAO{
 		List<Board01> list = new ArrayList<>();
 		try {
 			connect();
-			String sql = "SELECT * FROM board01 ORDER BY board01_num";
+			String sql = "SELECT board01_num, board01_title, board01_content, name, board01_write_date, board01_view_number, board01_pw, department "
+					+ "FROM board01 JOIN member "
+					+ "USING (name) ORDER BY board01_num desc";
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
@@ -146,6 +149,7 @@ public class Board01DAO extends DAO{
 				view.setBoard01Number(rs.getInt("board01_num"));
 				view.setBoard01Title(rs.getString("board01_title"));
 				view.setBoard01Content(rs.getString("board01_content"));
+				view.setMemberDepartment(rs.getString("department"));
 				view.setMemberName(rs.getString("name"));
 				view.setBoard01WriterDate(rs.getDate("board01_write_date"));
 				
@@ -166,7 +170,9 @@ public class Board01DAO extends DAO{
 		List<Board01> list = new ArrayList<>();
 		try {
 			connect();
-			String sql = "SELECT * FROM board01 WHERE board01_num = ?";
+			String sql = "SELECT board01_num, board01_title, board01_content, name, board01_write_date, board01_view_number, board01_pw, department "
+					+ "FROM board01 JOIN member "
+					+ "USING (name) WHERE board01_num = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, boardNum);
 			rs = pstmt.executeQuery();
@@ -177,6 +183,7 @@ public class Board01DAO extends DAO{
 				view.setBoard01Title(rs.getString("board01_title"));
 				view.setBoard01Content(rs.getString("board01_content"));
 				view.setMemberName(rs.getString("name"));
+				view.setMemberDepartment(rs.getString("department"));
 				view.setBoard01WriterDate(rs.getDate("board01_write_date"));
 				
 				list.add(view);
@@ -187,5 +194,90 @@ public class Board01DAO extends DAO{
 			disconnect();
 		}
 		return list;
+	}
+	//댓글보기
+	public List<Board01Re> viewRe(){
+			List<Board01Re> list = new ArrayList<>();
+			try {
+				connect();
+				String sql = "SELECT* FROM recontent01 ";
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(sql);
+				while(rs.next()) {
+					Board01Re view = new Board01Re();
+					view.setRecontent(rs.getString("recontent01_content"));
+					view.setBoard01Number(rs.getInt("board01_num"));
+					view.setMemberName(rs.getString("name"));
+					view.setReDate(rs.getDate("recontent01_date"));
+					
+					list.add(view);
+				}
+						
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				disconnect();
+			}
+			return list;
+		}
+	
+	//댓글입력
+	public void insertRe(Board01Re board01re) {
+		try {
+			connect();
+			String sql = "INSERT INTO recontent01(board01_num, "
+					+ "recontent01_content, "
+					+ "name, "
+					+ "recontent01_date, "
+					+ "recontent01_pw) "
+					
+					+ "VALUES(?, ?, ?, sysdate, ?)";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, board01re.getBoard01Number());
+			pstmt.setString(2, board01re.getRecontent());
+			pstmt.setString(3, board01re.getMemberName());
+			//pstmt.setDate(4, board01re.getReDate());
+			pstmt.setString(4, board01re.getPwRe());
+
+			
+			int result = pstmt.executeUpdate();
+			
+			if(result > 0) {
+				System.out.println("등록 완료");
+			}else {
+				System.out.println("등록 에러 : 다시 입력");
+			}
+					
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			disconnect();
+		}
+	}
+	//댓글삭제
+	public void deleteRe(Board01Re board01Re) {
+		try {
+			connect();
+			String sql = "DELETE FROM recontent01 "
+					+ "WHERE recontent01_pw = ? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, board01Re.getPwRe());
+
+			
+			int result = pstmt.executeUpdate();
+			
+			if(result > 0) {
+				System.out.println("삭제 완료");
+			}else {
+				System.out.println("삭제 에러");
+			}
+					
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			disconnect();
+		}
 	}
 }
