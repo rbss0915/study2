@@ -72,10 +72,10 @@ public class InfoSystem{
 		System.out.println("====");
 	}
 	private void back() {
-		System.out.println("메인으로 돌아갑니다1.");
+		System.out.println("메인으로 돌아갑니다");
 	}
 	protected void showInputError() {
-		System.out.println("메뉴 입력 에러3");
+		System.out.println("메뉴 입력 에러");
 	}
 	
 	private void updateMemberTrue(){

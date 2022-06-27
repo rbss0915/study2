@@ -67,7 +67,6 @@ public class Member {
 		return "ID: " + memberId
 					+ " 사원번호: " + memberNumber
 					+ " 이름: " + memberName
-					+ " 부서: " + memberDepartment
 					+ " 부서명: " + memberDepartment 
 					+ " 전화: " + memberPhone
 					+ " 이메일: " + memberEmail
