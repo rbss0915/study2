@@ -18,7 +18,6 @@ public class CheckSystem {
 			int menuNo = menuSelect();
 			if(menuNo == 1) {
 				//출근 등록
-				menuInfo();
 				CheckIn();
 			}else if(menuNo == 2) {
 				//전체 출근부
@@ -26,10 +25,9 @@ public class CheckSystem {
 			}else if(menuNo == 3) {
 				//출근자 검색
 				searchCheck();
-			
 			}else if(menuNo == 4) {
 				//결근자 검색
-				
+				searchCheckNon();
 			}else if(menuNo == 9) {
 				//뒤로가기
 				back();
@@ -42,7 +40,7 @@ public class CheckSystem {
 	
 	private void menuPrint() {
 		System.out.println("=================");
-		System.out.println("1.출근등록 2.전체출근부 3.출근자검색 9.뒤로가기");
+		System.out.println("0.결근자 1.출근등록 2.전체출근부 3.출근자검색 9.뒤로가기");
 		System.out.println("=================");
 	}
 	
@@ -55,6 +53,7 @@ public class CheckSystem {
 		Check check = new Check();
 		System.out.println("사원명>");
 		check.setMemberName(sc.nextLine());
+		System.out.println("1.출근 2.지각 9.퇴근");
 		System.out.println("근태처리>");
 		check.setCheckIn(sc.nextLine());
 		
@@ -64,7 +63,7 @@ public class CheckSystem {
 	private void selectAll() {
 		List<Check> list = cDAO.selectAll();
 		for(Check check : list) {
-			System.out.println(check.toString() );
+			System.out.println(check.toString());
 		}
 	}
 	
@@ -81,10 +80,9 @@ public class CheckSystem {
 	}
 	
 	private void searchCheckNon() {
-		String searchInfo = intputName();
-		List<Check> list = cDAO.searchCheck(searchInfo);
+		List<Check> list = cDAO.searchCheckNon();
 		for(Check check : list) {
-			System.out.println("금일 결근자"+check);
+			System.out.println(check.toString());
 		}
 	}
 
@@ -97,10 +95,7 @@ public class CheckSystem {
 		}
 		return menuNo;
 	}
-	private void menuInfo(){
-		System.out.println("1.출근 2.지각 9.퇴근");
-		System.out.println("입력>");
-	}
+
 	protected void showInputError() {
 		System.out.println("메뉴 입력 에러");
 	}

@@ -23,8 +23,9 @@ public class CheckDAO extends DAO{
 						+ "VALUES(?, sysdate, ? )";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, check.getMemberName());
-			pstmt.setDate(2, check.getCheckDate());
-			pstmt.setString(3, check.getCheckIn());
+			//pstmt.setDate(2, check.getCheckDate());
+			pstmt.setString(2, check.getCheckIn());
+			//pstmt.setDate(3, rs.getDate("check_date"));
 
 			
 			int result = pstmt.executeUpdate();
@@ -46,15 +47,16 @@ public class CheckDAO extends DAO{
 		List<Check> list = new ArrayList<>();
 		try {
 			connect();
-			String sql = "select name check_in, case when check_in=1 then '출근' when check_in=2 then '지각' when check_in=9 then '퇴근' else '결근' end \"check_info\" from checks";
+			String sql = "select name, check_date, check_in, case when check_in=1 then '출근' when check_in=2 then '지각' when check_in=9 then '퇴근' else '결근' end \"check_info\" from checks";
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 				Check check = new Check();
 				//check.setMemberName(rs.getString("name"));
-				check.setCheckInfo(rs.getString("check_info"));
+				check.setMemberName(rs.getString("name"));
+				check.setCheckDate(rs.getDate("check_date"));
 				check.setCheckIn(rs.getString("CHECK_IN"));
-				//check.setMemberDepartment(rs.getString("department"));
+				check.setCheckInfo(rs.getString("check_info"));
 				
 				list.add(check);
 
@@ -73,13 +75,15 @@ public class CheckDAO extends DAO{
 		List<Check> list = new ArrayList<>();
 		try {
 			connect();
-			String sql = "select * from (select name check_in, case when check_in=1 then '출근' when check_in=2 then '지각' when check_in=9 then '퇴근' else '결근' end \"check_info\" from checks) where check_in = 'aaa'";
+			String sql = "select * from (select name, check_date, check_in, case when check_in=1 then '출근' when check_in=2 then '지각' when check_in=9 then '퇴근' else '결근' end \"check_info\" from checks) where name = 'aaa'";
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
 				Check check = new Check();
 				
+				check.setMemberName(rs.getString("name"));
+				check.setCheckDate(rs.getDate("check_date"));
 				check.setCheckInfo(rs.getString("check_info"));
 				check.setCheckIn(rs.getString("CHECK_IN"));
 				
@@ -93,26 +97,27 @@ public class CheckDAO extends DAO{
 		return list;
 	}
 
-	public List<Check> searchCheckNon(String memberName){
+	public List<Check> searchCheckNon(){
 		List<Check> list = new ArrayList<>();
 		try {
 			connect();
-			String sql = "select name from checks WHERE CHECK_IN = 0;";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberName);
-			rs = pstmt.executeQuery();
-			
+			String sql = "select * from checks WHERE CHECK_IN = 0";
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 				Check check = new Check();
-				
-				check.setCheckInfo(rs.getString("check_info"));
+				//check.setMemberName(rs.getString("name"));
+				check.setMemberName(rs.getString("name"));
+				check.setCheckDate(rs.getDate("check_date"));
 				check.setCheckIn(rs.getString("CHECK_IN"));
 				
 				list.add(check);
+
 			}
-		} catch (SQLException e) {
+					
+		}catch(SQLException e) {
 			e.printStackTrace();
-		} finally {
+		}finally {
 			disconnect();
 		}
 		return list;

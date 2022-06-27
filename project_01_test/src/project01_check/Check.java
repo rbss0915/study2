@@ -43,8 +43,8 @@ public class Check {
 	@Override
 	public String toString() {
 		return " 사원명: " + checkIn
-					+ "근태정보: " + checkInfo
-					+ "출근일: " + checkDate;
+					+ " 근태정보: " + checkInfo
+					+ " 출근일: " + checkDate;
 	}
 
 
