@@ -61,15 +61,11 @@ public class InfoSystem{
 			
 		}
 	}
-	private void menuPrint() {
-		System.out.println("=================");
-		System.out.println("1.인사관리 2.사원검색 3.부서검색 4.전체사원 9.뒤로가기");
-		System.out.println("=================");
-	}
+
 	private void menuInfo() {
-		System.out.println("====");
-		System.out.println("정보:1.수정 2.탈퇴 9.뒤로가기");
-		System.out.println("====");
+		System.out.println(" 회원 정보 관리 :      1.수정      |     2.탈퇴                                                                      |9.뒤로가기");
+		System.out.println("_______________________________________________________________________________________________________________________________");
+
 	}
 	private void back() {
 		System.out.println("메인으로 돌아갑니다");
@@ -182,11 +178,11 @@ public class InfoSystem{
 	}
 	
 	private String intputName() {
-		System.out.println("검색 - 사원명 : ");
+		System.out.println("SEARCH 사원명 > ");
 		return sc.nextLine();
 	}
 	private String intputDepartment() {
-		System.out.println("검색 - 부서명 : ");
+		System.out.println("SEARCH 부서명 > ");
 		return sc.nextLine();
 	}
 	
@@ -196,6 +192,16 @@ public class InfoSystem{
 			System.out.println(member);
 		}
 		
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	private void menuPrint() {
+		System.out.println("_______________________________________________________________________________________________________________________________");
+		System.out.println("");
+		System.out.println("                                                    종 합 정 보 포 탈");
+		System.out.println("_______________________________________________________________________________________________________________________________");
+		System.out.println("      1.인사관리       |       2.사원조회        |        3.부서검색        |      4.전체사원 조회       |       9.뒤로가기");
+		System.out.println("");
+		System.out.println("_______________________________________________________________________________________________________________________________");
 	}
 
 	

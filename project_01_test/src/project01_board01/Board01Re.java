@@ -51,9 +51,10 @@ public class Board01Re {
 	
 	@Override
 	public String toString() {
-		return "RE : " + recontent
-					+ " 부서명 : " + memberDepartment
-					+ " 성명:"  + memberName
-					+ " 작성일 : " + reDate;
+		return "             ㄴRE : " + recontent
+					+ "                                                            " + memberDepartment
+					+ "  "  + memberName
+					+ "               " + reDate +""
+					+ "\r\n_______________________________________________________________________________________________________________________________";
 	}
 }

@@ -3,19 +3,19 @@ package project01_common;
 import java.util.List;
 import java.util.Scanner;
 
-import project01_board01.Board01;
-import project01_board01.Board01DAO;
-import project01_board01.Board01Re;
+import project01_board04.Board04;
+import project01_board04.Board04DAO;
+import project01_board04.Board04Re;
 import project01_member.Member;
 import project01_member.MemberDAO;
 
-public class Board01System {
+public class Board04System {
 	
 	private Scanner sc = new Scanner(System.in);
-	private Board01DAO b1DAO = Board01DAO.getInstance();
-	public static Board01 Board01Info = null;
+	private Board04DAO b1DAO = Board04DAO.getInstance();
+	public static Board04 Board04Info = null;
 
-	public Board01System() {
+	public Board04System() {
 		while(true) {
 			menuPrint();
 			viewBoard();
@@ -97,36 +97,36 @@ public class Board01System {
 
 
 	private void deleteReInfo() {
-		Board01Re board01re = deleteRe();
-		b1DAO.deleteRe(board01re);
+		Board04Re board04re = deleteRe();
+		b1DAO.deleteRe(board04re);
 	}
 	
-	private Board01Re deleteRe() {
-		Board01Re board01re = new Board01Re();
+	private Board04Re deleteRe() {
+		Board04Re board04re = new Board04Re();
 		System.out.println("댓비번확인>");
-		board01re.setPwRe(sc.nextLine());
+		board04re.setPwRe(sc.nextLine());
 		
-		return board01re;
+		return board04re;
 	}
 	
 	
 	private void insertReInfo() {
-		Board01Re board01re = inputRe();
-		b1DAO.insertRe(board01re);
+		Board04Re board04re = inputRe();
+		b1DAO.insertRe(board04re);
 	}
 	
-	private Board01Re inputRe() {
-		Board01Re board01re = new Board01Re();
+	private Board04Re inputRe() {
+		Board04Re board04re = new Board04Re();
 		System.out.println("현재글번호>");
-		board01re.setBoard01Number(Integer.parseInt(sc.nextLine()));
+		board04re.setBoard04Number(Integer.parseInt(sc.nextLine()));
 		System.out.println("내용>");
-		board01re.setRecontent(sc.nextLine());
+		board04re.setRecontent(sc.nextLine());
 		System.out.println("성명>");
-		board01re.setMemberName(sc.nextLine());
+		board04re.setMemberName(sc.nextLine());
 		System.out.println("댓비번>");
-		board01re.setPwRe(sc.nextLine());
+		board04re.setPwRe(sc.nextLine());
 		
-		return board01re;
+		return board04re;
 	}
 	
 
@@ -146,16 +146,16 @@ public class Board01System {
 		}
 	}	
 	private void deleteBoardInfo(String setPw) {
-		Board01 board01 = deleteAll();
-		//board01.setBoard01Pw(setPw);
-		b1DAO.delete(board01);
+		Board04 board04 = deleteAll();
+		//board04.setBoard04Pw(setPw);
+		b1DAO.delete(board04);
 	}
-	private Board01 deleteAll() {
-		Board01 board01 = new Board01();
+	private Board04 deleteAll() {
+		Board04 board04 = new Board04();
 		System.out.println("글비번>");
-		board01.setBoard01Pw(sc.nextLine());
+		board04.setBoard04Pw(sc.nextLine());
 		
-		return board01;
+		return board04;
 	}
 	private void updateBoardTrue(){
 		Member insertId = inputMember();
@@ -181,47 +181,47 @@ public class Board01System {
 		return info;
 	}
 	private void updateBoardInfo(String setName) {
-		Board01 board01 = updateAll();
-		board01.setMemberName(setName);
-		b1DAO.update(board01);
+		Board04 board04 = updateAll();
+		board04.setMemberName(setName);
+		b1DAO.update(board04);
 	}
-	private Board01 updateAll() {
-		Board01 board01 = new Board01();
+	private Board04 updateAll() {
+		Board04 board04 = new Board04();
 		System.out.println("제목>");
-		board01.setBoard01Title(sc.nextLine());
+		board04.setBoard04Title(sc.nextLine());
 		System.out.println("내용>");
-		board01.setBoard01Content(sc.nextLine());
+		board04.setBoard04Content(sc.nextLine());
 		System.out.println("확인용 비번>");
-		board01.setBoard01Pw(sc.nextLine());
+		board04.setBoard04Pw(sc.nextLine());
 		
-		return board01;
+		return board04;
 	}
 	
 	private void insertBoardInfo() {
-		Board01 board = inputAll();
+		Board04 board = inputAll();
 		b1DAO.insert(board);
 	}
 	
-	private Board01 inputAll() {
-		Board01 board01 = new Board01();
+	private Board04 inputAll() {
+		Board04 board04 = new Board04();
 		System.out.println("제목>");
-		board01.setBoard01Title(sc.nextLine());
+		board04.setBoard04Title(sc.nextLine());
 		System.out.println("내용>");
-		board01.setBoard01Content(sc.nextLine());
+		board04.setBoard04Content(sc.nextLine());
 		System.out.println("성명>");
-		board01.setMemberName(sc.nextLine());
+		board04.setMemberName(sc.nextLine());
 		System.out.println("비밀번호>");
-		board01.setBoard01Pw(sc.nextLine());
+		board04.setBoard04Pw(sc.nextLine());
 		
-		return board01;
+		return board04;
 	}
 
 	
 
 	
 	private void viewBoard() {
-		List<Board01> list = b1DAO.viewAll();
-		for(Board01 view : list) {
+		List<Board04> list = b1DAO.viewAll();
+		for(Board04 view : list) {
 			System.out.println(view.selectBoardInfo());
 		}
 		
@@ -239,16 +239,16 @@ public class Board01System {
 
 	private void selectBoard() {
 		int select = inputNum();
-		List<Board01> list = b1DAO.viewOne(select);
-		for(Board01 view : list) {
+		List<Board04> list = b1DAO.viewOne(select);
+		for(Board04 view : list) {
 			System.out.println(view);
 			//댓글보기
 			ViewRe(select);
 		}
 	}
 	private void ViewRe(int select) {
-		List<Board01Re> list = b1DAO.viewRe(select);
-		for(Board01Re view : list) {
+		List<Board04Re> list = b1DAO.viewRe(select);
+		for(Board04Re view : list) {
 			System.out.println(view);
 		}
 	}
@@ -257,8 +257,8 @@ public class Board01System {
 	private void searchBoard() {
 		String keyword = intputSearch();
 		//int select = inputNum();
-		List<Board01> list = b1DAO.viewSearch(keyword);
-		for(Board01 view : list) {
+		List<Board04> list = b1DAO.viewSearch(keyword);
+		for(Board04 view : list) {
 			System.out.println(view);
 			//댓글보기
 			//ViewRe2(keyword, select);
@@ -266,8 +266,8 @@ public class Board01System {
 	}
 	/*
 	private void ViewRe2(String keword, int select) {
-		List<Board01Re> list = b1DAO.viewRe2(keword, select);
-		for(Board01Re view : list) {
+		List<Board04Re> list = b1DAO.viewRe2(keword, select);
+		for(Board04Re view : list) {
 			System.out.println(view);
 			
 		}
@@ -281,9 +281,9 @@ public class Board01System {
 		//아이디와 비밀번호 입력
 		int num = intputNum();
 		//로그인 시도
-		Board01Info = Board01DAO.getInstance().selectLogin(num);
+		Board04Info = Board04DAO.getInstance().selectLogin(num);
 		//실패할 경우 그대로 메소드 종료
-		if(Board01Info == null) return;
+		if(Board04Info == null) return;
 		
 		//성공할 경우 프로그램을 실행
 		new selectBoard();
@@ -311,7 +311,7 @@ public class Board01System {
 	private void menuPrint() {
 		System.out.println("_______________________________________________________________________________________________________________________________");
 		System.out.println("");
-		System.out.println("                                                       공 지 사 항");
+		System.out.println("                                                       고 객 센 터");
 		System.out.println("_______________________________________________________________________________________________________________________________");
 		System.out.println("           1.글조회            |              2.글검색            |            5.등록             |          9.뒤로가기");
 		System.out.println("");

@@ -46,23 +46,24 @@ public class Calendar {
 
 	public static void printCalendar(int year, int month) {
 
-		System.out.printf("     	 %4d년	%d월 	\n", year, month);
-		System.out.println("-----------------------------------");
-		System.out.println(" SU   MO   TU   WE   TH   FR   SA");
-		System.out.println("-----------------------------------");
+		System.out.println("_______________________________________________________________________________________________________________________________");
+		System.out.printf("                                            %16d 년	   %d 월   	\n", year, month);
+		System.out.println("_______________________________________________________________________________________________________________________________");
+		System.out.println("             일             월             화             수             목             금             토");
+		System.out.println("_______________________________________________________________________________________________________________________________");
 
 		int count = 0;
 
 		int firstDay = getFirstDay(year, month);
 		
 		for (int i = 0; i < firstDay; i++) {
-			System.out.print("     ");
+			System.out.print("               ");
 			count++;
 		}
 
 		int lastDay = getLastDay(year, month);
 		for (int i = 1; i <= lastDay; i++) {
-			System.out.printf("%5d", i);
+			System.out.printf("%15d", i);
 			count++;
 			if (count % 7 == 0) {
 				System.out.println("\n");

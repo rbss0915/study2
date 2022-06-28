@@ -72,14 +72,25 @@ public class Board02 {
 
 	@Override
 	public String toString() {
-		return "글번호: " + board02Number
-					+ "제목: " + board02Title
-					+ "내용: " + board02Content
-					+ "성명:"  + memberName
-					+ "부서명: " + memberDepartment 
-					+ "작성일: " + board02WriterDate
-					+ "조회수: " + board02ViewCount
-					+ "댓글수: " + board02ReCount;
+		return "_______________________________________________________________________________________________________________________________\r\n"
+			+ "   글번호                          TITLE                                     작성자              작성일            조회수   댓글수 \r\n"
+			+ "     "+board02Number
+			+ "        " + board02Title
+			+ "                                               " + memberDepartment+" "+ memberName
+			+ "          " + board02WriterDate
+			+ "            " + board02ViewCount
+			+ "      " + board02ReCount
+			+ "\r\n_______________________________________________________________________________________________________________________________\r\n"
+			+ "\r\n         " + board02Content
+			+ "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+		    + "\r\n";
+		//+ "글번호: " + 
+	}
+	
+	public String selectBoardInfo() {
+		return "    "+ board02Number+"     " + board02Title+"                                                    "  + memberDepartment
+			+" " +memberName+"            " + board02WriterDate+"        " + board02ViewCount+"        " + board02ReCount
+			+"\r\n_______________________________________________________________________________________________________________________________";
 	}
 
 }

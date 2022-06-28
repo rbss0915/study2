@@ -12,7 +12,7 @@ import project01_member.MemberDAO;
 public class Board02System {
 	
 	private Scanner sc = new Scanner(System.in);
-	private Board02DAO b2DAO = Board02DAO.getInstance();
+	private Board02DAO b1DAO = Board02DAO.getInstance();
 	public static Board02 Board02Info = null;
 
 	public Board02System() {
@@ -41,7 +41,6 @@ public class Board02System {
 	
 	private void inBoard() {
 		selectBoard();
-		System.out.println("------------------");
 		
 		inBoardMenu();
 		int menuNo = menuSelect();
@@ -99,7 +98,7 @@ public class Board02System {
 
 	private void deleteReInfo() {
 		Board02Re board02re = deleteRe();
-		b2DAO.deleteRe(board02re);
+		b1DAO.deleteRe(board02re);
 	}
 	
 	private Board02Re deleteRe() {
@@ -113,7 +112,7 @@ public class Board02System {
 	
 	private void insertReInfo() {
 		Board02Re board02re = inputRe();
-		b2DAO.insertRe(board02re);
+		b1DAO.insertRe(board02re);
 	}
 	
 	private Board02Re inputRe() {
@@ -149,7 +148,7 @@ public class Board02System {
 	private void deleteBoardInfo(String setPw) {
 		Board02 board02 = deleteAll();
 		//board02.setBoard02Pw(setPw);
-		b2DAO.delete(board02);
+		b1DAO.delete(board02);
 	}
 	private Board02 deleteAll() {
 		Board02 board02 = new Board02();
@@ -184,7 +183,7 @@ public class Board02System {
 	private void updateBoardInfo(String setName) {
 		Board02 board02 = updateAll();
 		board02.setMemberName(setName);
-		b2DAO.update(board02);
+		b1DAO.update(board02);
 	}
 	private Board02 updateAll() {
 		Board02 board02 = new Board02();
@@ -200,7 +199,7 @@ public class Board02System {
 	
 	private void insertBoardInfo() {
 		Board02 board = inputAll();
-		b2DAO.insert(board);
+		b1DAO.insert(board);
 	}
 	
 	private Board02 inputAll() {
@@ -218,16 +217,12 @@ public class Board02System {
 	}
 
 	
-	private void menuPrint() {
-		System.out.println("=================");
-		System.out.println("1.글조회 2.글검색 5.등록 9.뒤로가기");
-		System.out.println("=================");
-	}
+
 	
 	private void viewBoard() {
-		List<Board02> list = b2DAO.viewAll();
+		List<Board02> list = b1DAO.viewAll();
 		for(Board02 view : list) {
-			System.out.println(view);
+			System.out.println(view.selectBoardInfo());
 		}
 		
 	}
@@ -244,7 +239,7 @@ public class Board02System {
 
 	private void selectBoard() {
 		int select = inputNum();
-		List<Board02> list = b2DAO.viewOne(select);
+		List<Board02> list = b1DAO.viewOne(select);
 		for(Board02 view : list) {
 			System.out.println(view);
 			//댓글보기
@@ -252,7 +247,7 @@ public class Board02System {
 		}
 	}
 	private void ViewRe(int select) {
-		List<Board02Re> list = b2DAO.viewRe(select);
+		List<Board02Re> list = b1DAO.viewRe(select);
 		for(Board02Re view : list) {
 			System.out.println(view);
 		}
@@ -262,7 +257,7 @@ public class Board02System {
 	private void searchBoard() {
 		String keyword = intputSearch();
 		//int select = inputNum();
-		List<Board02> list = b2DAO.viewSearch(keyword);
+		List<Board02> list = b1DAO.viewSearch(keyword);
 		for(Board02 view : list) {
 			System.out.println(view);
 			//댓글보기
@@ -271,7 +266,7 @@ public class Board02System {
 	}
 	/*
 	private void ViewRe2(String keword, int select) {
-		List<Board02Re> list = b2DAO.viewRe2(keword, select);
+		List<Board02Re> list = b1DAO.viewRe2(keword, select);
 		for(Board02Re view : list) {
 			System.out.println(view);
 			
@@ -308,8 +303,22 @@ public class Board02System {
 	}
 	
 	private void inBoardMenu(){
-		System.out.println("1.수정 2.삭제 3.댓글 4.댓글삭 9.뒤로");
+		System.out.println("|  1.게시글 수정  |  2.게시글 삭제                                               |    3.댓글     |    4.댓글 삭제     |    9.뒤로 |");
+		System.out.println("_______________________________________________________________________________________________________________________________");
 		
+	}
+	/////////////////////////레이아웃/////////////////////////레이아웃/////////////////////////레이아웃/////////////////////////레이아웃
+	private void menuPrint() {
+		System.out.println("_______________________________________________________________________________________________________________________________");
+		System.out.println("");
+		System.out.println("                                                       사 내 게 시 판");
+		System.out.println("_______________________________________________________________________________________________________________________________");
+		System.out.println("           1.글조회            |              2.글검색            |            5.등록             |          9.뒤로가기");
+		System.out.println("");
+		System.out.println("_______________________________________________________________________________________________________________________________");
+		System.out.println("_______________________________________________________________________________________________________________________________\r\n"
+			+  "  글번호  |                        TITLE                                 |  작성자            |   작성일         | 조회수 | 댓글수\r\n");
+		System.out.println("_______________________________________________________________________________________________________________________________");
 	}
 
 

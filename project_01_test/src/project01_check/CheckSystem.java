@@ -33,12 +33,7 @@ public class CheckSystem {
 		}
 	}
 	
-	private void menuPrint() {
-		System.out.println("=================");
-		System.out.println(" 1.출근등록 2.전체출근부 3.출근자검색 4.지각및결근자 9.뒤로가기");
-		System.out.println("=================");
-	}
-	
+
 	private void CheckIn() {
 		Check check = inputCheck();
 		cDAO.insertCheck(check);
@@ -46,7 +41,7 @@ public class CheckSystem {
 	
 	private Check inputCheck() {
 		Check check = new Check();
-		System.out.println("사원명>");
+		System.out.println(" 사원명 > ");
 		check.setMemberName(sc.nextLine());
 		System.out.println("1.출근 2.지각 9.퇴근");
 		System.out.println("근태처리>");
@@ -96,6 +91,21 @@ public class CheckSystem {
 	}
 	private void back() {
 		System.out.println("뒤로 돌아갑니다");
+	}
+	
+//////////////////////////////////레이아웃//////////////////////////////////레이아웃//////////////////////////////////레이아웃//////////////////////////////////레이아웃
+	
+	
+	
+	private void menuPrint() {
+		System.out.println("_______________________________________________________________________________________________________________________________");
+		System.out.println("");
+		System.out.println("                                                     근 태  관 리                           ");
+		System.out.println("_______________________________________________________________________________________________________________________________");
+		System.out.println("    1.출근등록    |       2.전체 출근부      |      3.출근자 검색      |       4.지각 및 결근자         |         9.뒤로가기");
+		System.out.println("");
+		System.out.println("_______________________________________________________________________________________________________________________________");
+		System.out.println("SELECT MENU NUMBER>");
 	}
 	
 
