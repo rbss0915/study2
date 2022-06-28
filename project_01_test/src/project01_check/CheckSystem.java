@@ -3,11 +3,6 @@ package project01_check;
 import java.util.List;
 import java.util.Scanner;
 
-
-
-
-
-
 public class CheckSystem {
 	private Scanner sc = new Scanner(System.in);
 	private CheckDAO cDAO = CheckDAO.getInstance();
@@ -40,7 +35,7 @@ public class CheckSystem {
 	
 	private void menuPrint() {
 		System.out.println("=================");
-		System.out.println("0.결근자 1.출근등록 2.전체출근부 3.출근자검색 9.뒤로가기");
+		System.out.println(" 1.출근등록 2.전체출근부 3.출근자검색 4.지각및결근자 9.뒤로가기");
 		System.out.println("=================");
 	}
 	

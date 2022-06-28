@@ -42,7 +42,7 @@ public class Check {
 	
 	@Override
 	public String toString() {
-		return " 사원명: " + checkIn
+		return " 사원명: " + memberName
 					+ " 근태정보: " + checkInfo
 					+ " 출근일: " + checkDate;
 	}

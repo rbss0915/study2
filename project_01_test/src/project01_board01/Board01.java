@@ -81,5 +81,15 @@ public class Board01 {
 					+ "조회수: " + board01ViewCount
 					+ "댓글수: " + board01ReCount;
 	}
+	
+	public String selectBoardInfo() {
+		return "글번호: " + board01Number
+					+ "제목: " + board01Title
+					+ "성명:"  + memberName
+					+ "부서명: " + memberDepartment 
+					+ "작성일: " + board01WriterDate
+					+ "조회수: " + board01ViewCount
+					+ "댓글수: " + board01ReCount;
+	}
 
 }

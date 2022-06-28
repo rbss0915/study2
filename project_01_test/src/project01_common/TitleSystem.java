@@ -16,22 +16,25 @@ public class TitleSystem {
 				//회사소개
 				introduce();
 			}else if(menuNo == 2) {
-				//공지사항
-				new Board01System();
-			}else if(menuNo == 3) {
-				//정보포탈
-				new InfoSystem();
-			}else if(menuNo == 4) {
-				//일정관리
-				new CalendarSystem();
-			}else if(menuNo == 5) {
 				//근태관리
 				new CheckSystem();
+			}else if(menuNo == 3) {
+				//공지사항
+				new Board01System();
+			}else if(menuNo == 4) {
+				//정보포탈
+				new InfoSystem();
+			}else if(menuNo == 5) {
+				//일정관리
+				new CalendarSystem();
 			}else if(menuNo == 6) {
-				
+				//사내게시판
+				new Board02System();
 			}else if(menuNo == 7) {
+				//결재내역
 				
 			}else if(menuNo == 8) {
+				//고객센터
 				
 			}else if(menuNo == 9) {
 				break;
@@ -40,11 +43,6 @@ public class TitleSystem {
 		}
 	}
 	
-	private void menuPrint() {
-		System.out.println("=================");
-		System.out.println("1.정보포탈 2.공지사항 3.일정관리 4. 9.뒤로가기");
-		System.out.println("=================");
-	}
 	
 	private int menuSelect() {
 		int menuNo = 0;
@@ -67,6 +65,13 @@ public class TitleSystem {
 		System.out.println("=========================================");
 	}
 	
+	
+	//////////////////////////////////////////////////////////////레이아웃
+	private void menuPrint() {
+		System.out.println("=================");
+		System.out.println("1.회사소개 2.근태관리 3.공지사항 4.정보포탈 5.일정관리 6.사내게시판 7.결재내역 8.고객센터 9.뒤로가기");
+		System.out.println("=================");
+	}
 	
 
 

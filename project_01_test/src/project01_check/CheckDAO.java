@@ -50,16 +50,12 @@ public class CheckDAO extends DAO{
 			String sql = "select name, check_date, check_in, case when check_in=1 then '출근' when check_in=2 then '지각' when check_in=9 then '퇴근' else '결근' end \"check_info\" from checks";
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
-			while(rs.next()) {
-				Check check = new Check();
-				//check.setMemberName(rs.getString("name"));
-				check.setMemberName(rs.getString("name"));
-				check.setCheckDate(rs.getDate("check_date"));
-				check.setCheckIn(rs.getString("CHECK_IN"));
-				check.setCheckInfo(rs.getString("check_info"));
-				
-				list.add(check);
-
+			int result = pstmt.executeUpdate();
+			
+			if(result > 0) {
+				System.out.println("근태처리 완료");
+			}else {
+				System.out.println("에러 : 다시 입력");
 			}
 					
 		}catch(SQLException e) {
@@ -75,9 +71,10 @@ public class CheckDAO extends DAO{
 		List<Check> list = new ArrayList<>();
 		try {
 			connect();
-			String sql = "select * from (select name, check_date, check_in, case when check_in=1 then '출근' when check_in=2 then '지각' when check_in=9 then '퇴근' else '결근' end \"check_info\" from checks) where name = 'aaa'";
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
+			String sql = "select * from (select name, check_date, check_in, case when check_in=1 then '출근' when check_in=2 then '지각' when check_in=9 then '퇴근' else '결근' end \"check_info\" from checks) where name = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberName);
+			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				Check check = new Check();
@@ -101,7 +98,7 @@ public class CheckDAO extends DAO{
 		List<Check> list = new ArrayList<>();
 		try {
 			connect();
-			String sql = "select * from checks WHERE CHECK_IN = 0";
+			String sql = "select * from checks WHERE CHECK_IN = 2";
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {

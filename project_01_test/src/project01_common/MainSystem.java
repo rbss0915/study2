@@ -43,11 +43,7 @@ public class MainSystem {
 	}
 	
 	//메소드
-	private void menuPrint() {
-		System.out.println("============================");
-		System.out.println("1.로그인 2.회원가입 9.종료");
-		System.out.println("============================");
-	}
+
 	
 	private int menuSelect() {
 		int menuNo = 0;
@@ -81,9 +77,9 @@ public class MainSystem {
 	
 	protected Member inputMember() {
 		Member info = new Member();
-		System.out.println("아이디>");
+		System.out.println("ID>");
 		info.setMemberId(sc.nextLine());
-		System.out.println("비밀번호>");
+		System.out.println("PASSWORD>");
 		info.setMemberPw(sc.nextLine());
 		return info;
 	}
@@ -121,5 +117,55 @@ public class MainSystem {
 		return member;
 	}
 	
+	//////////////////////////////////////레이아웃////////////////////////////////////////////
+	
+	
+	private void menuPrint() {
+		System.out.println("========================================================================================================================================================================================================");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("========================================================================================================================================================================================================");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("|                                                                                                                                                                                                      |");
+		System.out.println("========================================================================================================================================================================================================");
+		System.out.println("|           1             ||------------------------------------------------------------------------------------------------------------------------------------------||        2         |       9      |");
+		System.out.println("|         LOGIN           ||------------------------------------------------------------------------------------------------------------------------------------------||       가입       |     EXIT    |");
+		System.out.println("========================================================================================================================================================================================================");
+	}
 
 }

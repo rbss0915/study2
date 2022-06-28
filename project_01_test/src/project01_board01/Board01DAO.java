@@ -69,7 +69,7 @@ public class Board01DAO extends DAO{
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, board01.getBoard01Title());
 			pstmt.setString(2, board01.getBoard01Content());
-			pstmt.setString(3, board01.getMemberName());
+			pstmt.setString(3, board01.getBoard01Pw());
 
 			
 			int result = pstmt.executeUpdate();
@@ -91,11 +91,10 @@ public class Board01DAO extends DAO{
 		try {
 			connect();
 			String sql = "DELETE FROM board01 "
-					+ "WHERE board01_pw = ? ";
+					+ "WHERE board01_pw = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, board01.getBoard01Pw());
-
 			
 			int result = pstmt.executeUpdate();
 			
@@ -139,7 +138,7 @@ public class Board01DAO extends DAO{
 		List<Board01> list = new ArrayList<>();
 		try {
 			connect();
-			String sql = "SELECT board01_num, board01_title, board01_content, name, board01_write_date, board01_view_number, board01_pw, department "
+			String sql = "SELECT board01_num, board01_title, board01_content, name, board01_write_date, board01_view_number, department "
 					+ "FROM board01 JOIN member "
 					+ "USING (name) ORDER BY board01_num desc";
 			stmt = conn.createStatement();
@@ -149,9 +148,10 @@ public class Board01DAO extends DAO{
 				view.setBoard01Number(rs.getInt("board01_num"));
 				view.setBoard01Title(rs.getString("board01_title"));
 				view.setBoard01Content(rs.getString("board01_content"));
-				view.setMemberDepartment(rs.getString("department"));
 				view.setMemberName(rs.getString("name"));
 				view.setBoard01WriterDate(rs.getDate("board01_write_date"));
+				//view.setBoard01Pw(rs.getString("board01_pw"));
+				view.setMemberDepartment(rs.getString("department"));
 				
 				list.add(view);
 
@@ -195,24 +195,54 @@ public class Board01DAO extends DAO{
 		}
 		return list;
 	}
+	//검색글
+	public List<Board01> viewSearch(String keyword){
+		List<Board01> list = new ArrayList<>();
+		try {
+			connect();
+			String sql = " SELECT board01_num, board01_title, board01_content, name, board01_write_date, board01_view_number, board01_pw, department "
+					+ "FROM board01 JOIN member "
+					+ "USING (name) WHERE board01_title LIKE '%" + keyword + "%'";
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				Board01 view = new Board01();
+				view.setBoard01Number(rs.getInt("board01_num"));
+				view.setBoard01Title(rs.getString("board01_title"));
+				view.setBoard01Content(rs.getString("board01_content"));
+				view.setMemberName(rs.getString("name"));
+				view.setBoard01WriterDate(rs.getDate("board01_write_date"));
+				view.setBoard01Pw(rs.getString("board01_pw"));
+				view.setMemberDepartment(rs.getString("department"));
+				
+				list.add(view);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return list;
+	}
 	//댓글보기
-	public List<Board01Re> viewRe(){
+	public List<Board01Re> viewRe(int boardNum){
 			List<Board01Re> list = new ArrayList<>();
 			try {
 				connect();
-				String sql = "SELECT* FROM recontent01 ";
-				stmt = conn.createStatement();
-				rs = stmt.executeQuery(sql);
+				String sql = "SELECT board01_num, recontent01_content, name, recontent01_date, recontent01_pw, department FROM recontent01 JOIN member USING (name) WHERE board01_num = ? ORDER BY recontent01_date desc";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, boardNum);
+				rs = pstmt.executeQuery();
 				while(rs.next()) {
 					Board01Re view = new Board01Re();
-					view.setRecontent(rs.getString("recontent01_content"));
 					view.setBoard01Number(rs.getInt("board01_num"));
+					view.setRecontent(rs.getString("recontent01_content"));
 					view.setMemberName(rs.getString("name"));
 					view.setReDate(rs.getDate("recontent01_date"));
-					
+					view.setMemberDepartment(rs.getString("department"));
 					list.add(view);
 				}
-						
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}finally {
@@ -220,6 +250,32 @@ public class Board01DAO extends DAO{
 			}
 			return list;
 		}
+	/*//검색한글의 댓글
+	public List<Board01Re> viewRe2(String keyword, int board01Num){
+		List<Board01Re> list = new ArrayList<>();
+		try {
+			connect();
+			String sql = "SELECT board01_num, recontent01_content, name, recontent01_date, recontent01_pw, department FROM recontent01 JOIN member USING (name) WHERE board01_num = ? AND recontent01_content like '%'||?||'%'ORDER BY recontent01_date desc";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, board01Num);
+			pstmt.setString(2, keyword);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Board01Re view = new Board01Re();
+				view.setBoard01Number(rs.getInt("board01_num"));
+				view.setRecontent(rs.getString("recontent01_content"));
+				view.setMemberName(rs.getString("name"));
+				view.setReDate(rs.getDate("recontent01_date"));
+				view.setMemberDepartment(rs.getString("department"));
+				list.add(view);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			disconnect();
+		}
+		return list;
+	}*/
 	
 	//댓글입력
 	public void insertRe(Board01Re board01re) {
