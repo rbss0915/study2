@@ -103,7 +103,7 @@ public class Board03System {
 	
 	private Board03Re deleteRe() {
 		Board03Re board03re = new Board03Re();
-		System.out.println("댓비번확인>");
+		System.out.println("댓글패스워드 확인>");
 		board03re.setPwRe(sc.nextLine());
 		
 		return board03re;
@@ -117,13 +117,13 @@ public class Board03System {
 	
 	private Board03Re inputRe() {
 		Board03Re board03re = new Board03Re();
-		System.out.println("현재글번호>");
+		System.out.println("현재 글번호>");
 		board03re.setBoard03Number(Integer.parseInt(sc.nextLine()));
 		System.out.println("내용>");
 		board03re.setRecontent(sc.nextLine());
 		System.out.println("성명>");
 		board03re.setMemberName(sc.nextLine());
-		System.out.println("댓비번>");
+		System.out.println("댓글패스워드>");
 		board03re.setPwRe(sc.nextLine());
 		
 		return board03re;
@@ -136,10 +136,11 @@ public class Board03System {
 		Member inputId = MemberDAO.getInstance().selectCheck(insertId.getMemberId(), insertId.getMemberPw());
 		while(true) {
 			if(inputId == null) {  
-				System.out.println("비밀번호/아이디 불일치");
+				System.out.println("패스워드/아이디 불일치");
 				break;
 			}else {
-				System.out.println("본인확인완료 - 삭제?");
+				System.out.println("본인확인완료");
+				System.out.println("삭제 하시겠습니까?");
 				deleteBoardInfo(insertId.getMemberId());
 				break;
 			}
@@ -152,7 +153,7 @@ public class Board03System {
 	}
 	private Board03 deleteAll() {
 		Board03 board03 = new Board03();
-		System.out.println("글비번>");
+		System.out.println("게사굴 패스워드>");
 		board03.setBoard03Pw(sc.nextLine());
 		
 		return board03;
@@ -162,10 +163,10 @@ public class Board03System {
 		Member inputId = MemberDAO.getInstance().selectCheck(insertId.getMemberId(), insertId.getMemberPw());
 		while(true) {
 			if(inputId == null) {  
-				System.out.println("비밀번호/아이디 불일치");
+				System.out.println("패스워드/아이디 불일치");
 				break;
 			}else {
-				System.out.println("확인완료 - 수정");
+				System.out.println("본인 확인완료");
 				updateBoardInfo(insertId.getMemberId());
 				break;
 			}
@@ -174,9 +175,9 @@ public class Board03System {
 	}
 	public Member inputMember() {
 		Member info = new Member();
-		System.out.println("확인아이디>");
+		System.out.println("확인 아이디>");
 		info.setMemberId(sc.nextLine());
-		System.out.println("확인비밀번호>");
+		System.out.println("확인 비밀번호>");
 		info.setMemberPw(sc.nextLine());
 		return info;
 	}
@@ -191,7 +192,7 @@ public class Board03System {
 		board03.setBoard03Title(sc.nextLine());
 		System.out.println("내용>");
 		board03.setBoard03Content(sc.nextLine());
-		System.out.println("확인용 비번>");
+		System.out.println("게시글 패스워드>");
 		board03.setBoard03Pw(sc.nextLine());
 		
 		return board03;
@@ -210,7 +211,7 @@ public class Board03System {
 		board03.setBoard03Content(sc.nextLine());
 		System.out.println("성명>");
 		board03.setMemberName(sc.nextLine());
-		System.out.println("비밀번호>");
+		System.out.println("패스워드>");
 		board03.setBoard03Pw(sc.nextLine());
 		
 		return board03;
@@ -314,10 +315,10 @@ public class Board03System {
 		System.out.println("                                                       결 재 내 역");
 		System.out.println("_______________________________________________________________________________________________________________________________");
 		System.out.println("           1.글조회            |              2.글검색            |            5.등록             |          9.뒤로가기");
-		System.out.println("");
-		System.out.println("_______________________________________________________________________________________________________________________________");
+		//System.out.println("");
+		//System.out.println("_______________________________________________________________________________________________________________________________");
 		System.out.println("_______________________________________________________________________________________________________________________________\r\n"
-			+  "  글번호  |                        TITLE                                 |  작성자            |   작성일         | 조회수 | 댓글수\r\n");
+			+  "  글번호  |                        TITLE                                 |       작성자       |      작성일      | 조회수 | 댓글수\r\n");
 		System.out.println("_______________________________________________________________________________________________________________________________");
 	}
 

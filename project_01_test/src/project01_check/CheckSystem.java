@@ -65,7 +65,7 @@ public class CheckSystem {
 		}
 	}
 	private String intputName() {
-		System.out.println("검색 - 사원명 : ");
+		System.out.println("search 사원명 > ");
 		return sc.nextLine();
 	}
 	

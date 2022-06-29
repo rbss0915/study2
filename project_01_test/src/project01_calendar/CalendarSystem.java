@@ -51,10 +51,4 @@ public class CalendarSystem {
 		return menuNo;
 	}
 
-	/*public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		Prompt prompt = new Prompt();
-		prompt.runPrompt(sc);
-		sc.close();
-	}*/
 }

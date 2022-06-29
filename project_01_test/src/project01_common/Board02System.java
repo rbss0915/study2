@@ -103,7 +103,7 @@ public class Board02System {
 	
 	private Board02Re deleteRe() {
 		Board02Re board02re = new Board02Re();
-		System.out.println("댓비번확인>");
+		System.out.println("댓글패스워드 확인>");
 		board02re.setPwRe(sc.nextLine());
 		
 		return board02re;
@@ -117,13 +117,13 @@ public class Board02System {
 	
 	private Board02Re inputRe() {
 		Board02Re board02re = new Board02Re();
-		System.out.println("현재글번호>");
+		System.out.println("현재 글번호>");
 		board02re.setBoard02Number(Integer.parseInt(sc.nextLine()));
 		System.out.println("내용>");
 		board02re.setRecontent(sc.nextLine());
 		System.out.println("성명>");
 		board02re.setMemberName(sc.nextLine());
-		System.out.println("댓비번>");
+		System.out.println("댓글패스워드>");
 		board02re.setPwRe(sc.nextLine());
 		
 		return board02re;
@@ -139,7 +139,8 @@ public class Board02System {
 				System.out.println("비밀번호/아이디 불일치");
 				break;
 			}else {
-				System.out.println("본인확인완료 - 삭제?");
+				System.out.println("본인확인완료");
+				System.out.println("삭제 하시겠습니까?");
 				deleteBoardInfo(insertId.getMemberId());
 				break;
 			}
@@ -152,7 +153,7 @@ public class Board02System {
 	}
 	private Board02 deleteAll() {
 		Board02 board02 = new Board02();
-		System.out.println("글비번>");
+		System.out.println("게사굴 패스워드>");
 		board02.setBoard02Pw(sc.nextLine());
 		
 		return board02;
@@ -162,7 +163,7 @@ public class Board02System {
 		Member inputId = MemberDAO.getInstance().selectCheck(insertId.getMemberId(), insertId.getMemberPw());
 		while(true) {
 			if(inputId == null) {  
-				System.out.println("비밀번호/아이디 불일치");
+				System.out.println("패스워드/아이디 불일치");
 				break;
 			}else {
 				System.out.println("확인완료 - 수정");
@@ -174,9 +175,9 @@ public class Board02System {
 	}
 	public Member inputMember() {
 		Member info = new Member();
-		System.out.println("확인아이디>");
+		System.out.println("확인 아이디>");
 		info.setMemberId(sc.nextLine());
-		System.out.println("확인비밀번호>");
+		System.out.println("확인 비밀번호>");
 		info.setMemberPw(sc.nextLine());
 		return info;
 	}
@@ -191,7 +192,7 @@ public class Board02System {
 		board02.setBoard02Title(sc.nextLine());
 		System.out.println("내용>");
 		board02.setBoard02Content(sc.nextLine());
-		System.out.println("확인용 비번>");
+		System.out.println("게시글 패스워드>");
 		board02.setBoard02Pw(sc.nextLine());
 		
 		return board02;
@@ -314,10 +315,10 @@ public class Board02System {
 		System.out.println("                                                       사 내 게 시 판");
 		System.out.println("_______________________________________________________________________________________________________________________________");
 		System.out.println("           1.글조회            |              2.글검색            |            5.등록             |          9.뒤로가기");
-		System.out.println("");
-		System.out.println("_______________________________________________________________________________________________________________________________");
+		//System.out.println("");
+		//System.out.println("_______________________________________________________________________________________________________________________________");
 		System.out.println("_______________________________________________________________________________________________________________________________\r\n"
-			+  "  글번호  |                        TITLE                                 |  작성자            |   작성일         | 조회수 | 댓글수\r\n");
+			+  "  글번호  |                        TITLE                                 |       작성자       |      작성일      | 조회수 | 댓글수\r\n");
 		System.out.println("_______________________________________________________________________________________________________________________________");
 	}
 

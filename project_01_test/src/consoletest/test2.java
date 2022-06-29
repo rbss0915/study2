@@ -26,7 +26,7 @@ public class test2 {
 				+ "|   |__] |__| ___] | | \\| |___ ___] ___]    |    |__| |  \\  |  |  | |___    ___]   |   ___]  |  |___ |  |  |                   |\r\n"
 				+ "|           _______________________________________________________________________________________________|                   |";
 		String art3 ="|                                                                                                          |                   |\r\n"
-				+ "|       SK Innovation, SK Group’s intermediate holding company, operates energy, petrochemical, e-mobility |         2.SIGN UP |\r\n"
+				+ "|      SK Innovation, SK Group’s intermediate holding company, operates energy, petrochemical, e-mobility |         2.SIGN UP |\r\n"
 				+ "|             electronic materials businesses, along with 8 major subsidiaries including SK energy, SK geo |___________________|\r\n"
 				+ "|                           trading international, SK ie technology, and SK earthon. We have established a |                   |\r\n"
 				+ "|          hain in our businesses with a vertical integration from E&P to producing petrochemical products |                   |\r\n"

@@ -102,6 +102,33 @@ public class Command {
 		String searchDate = sc.nextLine();
 		Date sdate = fromStringtoDate(searchDate);
 		PlanItem result = planSave.get(sdate);
+		System.out.println("_______________________________________________________________________________________________________________________________");
+		System.out.println("        일 정       |      "+result.plan);
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("      일정 내용      |      "+result.location);
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------------");
+		//System.out.println("일정: " + result.plan);
+		//System.out.println("일정 내용: " + result.location);
+		int i = 1;
+		System.out.println("   관련 부서 및 사원   |");
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------------");
+		for (String x : result.user) {
+			System.out.println("        소 속" + i + "      | " + x);
+			i++;
+			System.out.println("");
+			System.out.println("");
+			System.out.println("-------------------------------------------------------------------------------------------------------------------------------");
+		}
+		
+		System.out.println();
+
+	}
+	/*public void cmdSearch() {
+		System.out.println("검색 - 입력형식 (yyyy-MM-dd).");
+		System.out.print("DATE> ");
+		String searchDate = sc.nextLine();
+		Date sdate = fromStringtoDate(searchDate);
+		PlanItem result = planSave.get(sdate);
 		System.out.println("일정: " + result.plan);
 		System.out.println("일정 내용: " + result.location);
 		int i = 1;
@@ -112,8 +139,8 @@ public class Command {
 		}
 		
 		System.out.println();
-
-	}
+		
+	}*/
 
 	public void cmdPrintCalendar() {
 

@@ -14,7 +14,7 @@ public class TitleSystem {
 			int menuNo = menuSelect();
 			if(menuNo == 1) {
 				//회사소개
-				introduce();
+				introduceMenu();
 				continue;
 			}else if(menuNo == 2) {
 				//근태관리
@@ -41,6 +41,7 @@ public class TitleSystem {
 			}else if(menuNo == 9) {
 				break;
 			}else {
+				showInputError();
 			}
 		}
 	}
@@ -85,7 +86,7 @@ public class TitleSystem {
 				+ "   |__] |__| ___] | | \\| |___ ___] ___]    |    |__| |  \\  |  |  | |___    ___]   |   ___]  |  |___ |  |  |                  \r\n"
 				+ "           _______________________________________________________________________________________________|7.결재 승인           ";
 		String art3 ="                                                                                                          |                   \r\n"
-				+ "       SK Innovation, SK Group’s intermediate holding company, operates energy, petrochemical, e-mobility |                    \r\n"
+				+ "      SK Innovation, SK Group’s intermediate holding company, operates energy, petrochemical, e-mobility |                    \r\n"
 				+ "             electronic materials businesses, along with 8 major subsidiaries including SK energy, SK geo |8.고객센터           \r\n"
 				+ "                           trading international, SK ie technology, and SK earthon. We have established a |___________________\r\n"
 				+ "          hain in our businesses with a vertical integration from E&P to producing petrochemical products |                   \r\n"
@@ -96,6 +97,20 @@ public class TitleSystem {
 		System.out.println(art2);
 		System.out.println(art3);
 		System.out.println("SELECT MENU NUMBER>");
+	}
+	
+	//회사 소개 호출
+	public void introduceMenu() {
+		while(true) {
+			introduce();
+			int menuNo = menuSelect();
+			if(menuNo == 9) {
+				//뒤로가기
+				break;
+			}else {
+				showInputError();
+			}
+		}
 	}
 	
 	public void introduce(){
@@ -122,20 +137,24 @@ public class TitleSystem {
 				+ "   |__] |__| ___] | | \\| |___ ___] ___]    |    |__| |  \\  |  |  | |___    ___]   |   ___]  |  |___ |  |  \r\n"
 				+ "           _______________________________________________________________________________________________";
 		String art3 ="                                                                                                       \r\n"
-				+ "                                              SK ESG 경영으로 인류의 지속가능한 미래를 만들어 가는 SK이노베이션                    \r\n"
-				+ "  대한민국 산업을 최선두에서 이끌며 경제발전의 견인차 역할을 해 온 SK이노베이션은 ESG 경영을 기반으로 모두가 행복한                  \r\n"
-				+ "          미래, 지속가능한 세상을 만들기 위해 세계 곳곳의 현장에서 오늘도 쉼없이 한 걸음 한 걸음을 내딛고 있습니다. \r\n"
-				+ "     K이노베이션은 대한민국 대표 에너지 기업인 SK에너지, 화학소재 사업 밸류 체인의 순환 경제를 만드는 SK지오센트릭                    \r\n"
-				+ "        미래산업을 선도하는 배터리 생태계를 구축하는 SK온, 글로벌 윤활유 제품 시장의 역사를 써 나가는 SK루브리컨츠              \r\n"
-				+ "          보다 안전하고 깨끗한 에너지로 지역사회와 상생하는 SK인천석유화학,전문 트레이딩 기업 SK트레이딩인터내셔널 _________________  \r\n"
-				+ "            정보전자소재산업의 글로벌 리딩기업 SK아이이테크놀로지 자원 순환까지 생각하는 E&P 기업 SK어스온과 함께 |                   \r\n"
-				+ "                                               Green Energy & Material Company   꿈을 향해 전진하고 있습니다 |    9.BACK      \r\n"
+				+ "                                        SK ESG 경영으로 인류의 지속가능한 미래를 만들어 가는 SK이노베이션\r\n"
+				+ "       대한민국 산업을 최선두에서 이끌며 경제발전의 견인차 역할을 해 온 SK이노베이션은 ESG 경영을 기반으로 모두가 행복한\r\n"
+				+ "            미래, 지속가능한 세상을 만들기 위해 세계 곳곳의 현장에서 오늘도 쉼없이 한 걸음 한 걸음을 내딛고 있습니다\r\n"
+				+ "         K이노베이션은 대한민국 대표 에너지 기업인 SK에너지, 화학소재 사업 밸류 체인의 순환 경제를 만드는 SK지오센트릭\r\n"
+				+ "           미래산업을 선도하는 배터리 생태계를 구축하는 SK온, 글로벌 윤활유 제품 시장의 역사를 써 나가는 SK루브리컨츠\r\n"
+				+ "               보다 안전하고 깨끗한 에너지로 지역사회와 상생하는 SK인천석유화학,전문 트레이딩 기업 SK트레이딩인터내셔널 _________________\r\n"
+				+ "                        정보전자소재산업의 글로벌 리딩기업 SK아이이테크놀로지 자원 순환까지 생각하는 E&P 기업 SK어스온과 함께 |\r\n"
+				+ "                                                     Green Energy & Material Company  꿈을 향해 전진하고 있습니다 |    9.BACK      \r\n"
 				+ "___________________________________________________________________________________________________________|_________________\r\n";
 		
 		System.out.println(art);
 		System.out.println(art2);
 		System.out.println(art3);
 		System.out.println("SELECT MENU NUMBER>");
+	}
+	
+	protected void showInputError() {
+		System.out.println("메뉴 입력 에러");
 	}
 
 

@@ -74,12 +74,9 @@ public class Board01 {
 	public String toString() {
 		return "_______________________________________________________________________________________________________________________________\r\n"
 			+ "   글번호                          TITLE                                     작성자              작성일            조회수   댓글수 \r\n"
-			+ "     "+board01Number
-			+ "        " + board01Title
-			+ "                                               " + memberDepartment+" "+ memberName
-			+ "          " + board01WriterDate
-			+ "            " + board01ViewCount
-			+ "      " + board01ReCount
+			+ "    "+board01Number+"         "+board01Title
+			+"\r\n                                                                           "+memberDepartment+" "+memberName+"        "+board01WriterDate
+			+ "           " +board01ViewCount+"      "+board01ReCount
 			+ "\r\n_______________________________________________________________________________________________________________________________\r\n"
 			+ "\r\n         " + board01Content
 			+ "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
@@ -88,9 +85,10 @@ public class Board01 {
 	}
 	
 	public String selectBoardInfo() {
-		return "    "+ board01Number+"     " + board01Title+"                                                    "  + memberDepartment
-			+" " +memberName+"            " + board01WriterDate+"        " + board01ViewCount+"        " + board01ReCount
-			+"\r\n_______________________________________________________________________________________________________________________________";
+		return "    "+board01Number+"     "+board01Title
+			+"\r\n                                                                           "+memberDepartment
+			+" "+memberName+"          "+board01WriterDate+"      "+board01ViewCount+"      "+board01ReCount
+			+"\r\n-------------------------------------------------------------------------------------------------------------------------------";
 	}
 
 }
